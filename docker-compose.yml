@@ -9,8 +9,17 @@ services:
       command: python manage.py runserver 0.0.0.0:8000
       ports:
         - "8000:8000"
+      volumes:
+        - ./app/:/backend/app/
+        - node:/backend/node_modules/
       depends_on:
         - pgdb
+
+    node_modules:
+      build:
+        context: ./npm.conf
+      volumes: 
+        - node:/modules/
 
     pgdb:
       image: postgres:13
@@ -29,4 +38,5 @@ services:
         - pgdb_directory:/var/lib/postgresql/data9
 
 volumes:
-  pgdb_directory:  
+  pgdb_directory: 
+  node:  

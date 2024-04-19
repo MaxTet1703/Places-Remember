@@ -1,0 +1,24 @@
+{%load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css'%}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'jquery/dist/jquery.min.js' %}">
+    </head>
+    <body>
+        <header class="container-fluid">
+                <nav id="nav-header" class="d-flex justify-content-center">
+                    {% if request.user.is_authenticated %}
+                        <p class="title">Добро пожаловать в Places Remember, {{user}}</p>
+                        <span class="login-btn"><a href="{% url 'logout' %}">Выйти</a></span>
+                    {% else %}
+                        <p class="title">Добро пожаловать в Places Remember</p>
+                        <span class="login-btn"><a href="{% url 'social:begin' 'vk-oauth2' %}">Войти</a></span>
+                    {% endif %}
+                </nav>
+        </header>
+    </body>
+</html>

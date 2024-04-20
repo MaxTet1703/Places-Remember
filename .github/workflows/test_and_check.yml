@@ -13,3 +13,14 @@ jobs:
         run: docker-compose build
       - name: Test Lint
         run: docker-compose run --rm backend flake8 --config config.cfg
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: run docker
+        run: docker-compose build
+      - name: make migrations
+        run: docker-compose run --rm backend python manage.py migrate
+      - name: test
+        run: docker-compose run --rm backend python manage.py test app 

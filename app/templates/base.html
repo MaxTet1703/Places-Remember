@@ -12,7 +12,8 @@
         <header class="container-fluid">
                 <nav id="nav-header" class="d-flex justify-content-center">
                     {% if request.user.is_authenticated %}
-                        <p class="title">Добро пожаловать в Places Remember, {{user}}</p>
+                        <p class="title">Добро пожаловать в Places Remember, {{user.first_name}} {{user.last_name}}</p>
+                        <img class="user-image" src="{{photo.image.url}}" alt="">
                         <span class="login-btn"><a href="{% url 'logout' %}">Выйти</a></span>
                     {% else %}
                         <p class="title">Добро пожаловать в Places Remember</p>
@@ -20,5 +21,7 @@
                     {% endif %}
                 </nav>
         </header>
+        {% block content %}
+        {% endblock %}
     </body>
 </html>

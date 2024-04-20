@@ -125,6 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "static"
 STATICFILES_DIRS = (
     BASE_DIR / 'app' / 'static',
     BASE_DIR / 'node_modules' / 'node_modules',
@@ -160,6 +161,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.social_auth.associate_user',
     'social_core.pipeline.social_auth.load_extra_data',
     'social_core.pipeline.user.user_details',
+    'app.social_pipeline.get_image'
 )
 
 # Login settings

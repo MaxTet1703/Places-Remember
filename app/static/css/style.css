@@ -27,3 +27,12 @@ p.title{
     color: inherit;
     text-decoration: none;
 }
+.user-image{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    position: absolute;
+    right: 100px;
+    top: 50%;
+    transform: translateY(-50%);
+}

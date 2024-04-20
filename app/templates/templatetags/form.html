@@ -1,0 +1,10 @@
+<div class="form-container d-flex justify-content-center">
+    <form id="create" class="d-flex flex-column " method="POST" action="{{url}}">
+        {% csrf_token %}
+        {% for f in form%}
+            {{f}}
+        {% endfor %}
+        <button class="align-self-center" type="submit">{{do}}</button>
+    </form>
+    <div id="map"></div>
+</div>

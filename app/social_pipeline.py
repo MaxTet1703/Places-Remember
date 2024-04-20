@@ -16,7 +16,6 @@ def get_image(strategy, details, backend, user=None, *args, **kwargs):
     """
     if user:
         if not UserImageModel.objects.filter(user=user).exists():
-            print('lf')
             extra_data = user.social_auth.all().first()
             access_token = extra_data.extra_data["access_token"]
             api = vk_api.VkApi(token=access_token).get_api()
@@ -27,4 +26,3 @@ def get_image(strategy, details, backend, user=None, *args, **kwargs):
             new_image = UserImageModel(user=user)
             new_image.image.save(f"image_{user.pk}.jpg", File(img_temp))
             new_image.save()
-

@@ -38,6 +38,9 @@ class MainPageView(LoginRequiredMixin, ListView, FormView):
         return context
 
     def form_valid(self, form):
+        new_entry = form.save(commit=False)
+        new_entry.user = self.request.user
+        new_entry.save()
         return JsonResponse({"status": 200}, status=200)
 
     def form_invalid(self, form):

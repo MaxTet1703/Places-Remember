@@ -73,3 +73,16 @@ p.title{
     outline: none;
     border: 3px solid #2787F5;
 }
+.review-wrapper{
+    margin: 20px 0;
+}
+div.text p{
+    max-width: 300px;
+    text-wrap: wrap;
+}
+div.map{
+    height: 200px;
+    width: 400px;
+    margin-left: 15px;
+}
+

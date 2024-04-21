@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
+from django.urls import reverse_lazy
 
 User = get_user_model()
 
@@ -22,3 +23,6 @@ class PlaceModel(models.Model):
     longitude = models.FloatField(null=False, blank=False, verbose_name="Широта")
     latitude = models.FloatField(null=False, blank=False, verbose_name="Долгота")
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="Пользователь")
+
+    def get_absolute_url(self):
+        return reverse_lazy("change", kwargs={"id": self.pk})

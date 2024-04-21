@@ -12,18 +12,6 @@ class PlacesForm(forms.ModelForm):
         model = PlaceModel
         coords = forms.NumberInput(attrs={'type': 'hidden'})
         fields = ("name", "description", "latitude", "longitude")
-        widgets = {
-            "name": forms.TextInput(attrs={
-                "class": "p-name",
-                "placeholder": "Введите название"
-            }),
-            "description": forms.Textarea(attrs={
-                "class": "p-descr",
-                "placeholder": "Расскажите об этом месте"
-            }),
-            "longitude": coords,
-            "latitude": coords
-        }
 
     def clean_name(self):
         """

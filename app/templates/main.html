@@ -5,10 +5,14 @@
 {% block content %}
 <h1 style="text-align: center;  padding: 10px;">Создать новое впечатление</h1>
 {% render_places_form 'Создать' %}
+{% if not reviews %}
+<h1 style="text-align: center; padding: 10px;">У вас ещё нет воспоминаний</h1>
+{% else %}
 <h1 style="text-align: center; padding: 10px;">Ваши воспоминания</h1>
 <div class="reviews-container d-flex flex-column align-items-center">
     {% for r in reviews %}
         <div class="review-wrapper d-flex">
+            <a class="change-button" href="{{r.get_absolute_url}}">Изменить <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
             <div class="text">
                 <h4>{{r.name}}</h4>
                 <p>{{r.description}}</p>
@@ -18,6 +22,7 @@
         </div>
     {% endfor %}
 </div>
+{% endif %}
 
 
 <script src="https://api-maps.yandex.ru/2.1/?apikey={{key_api}}&lang=ru_RU"></script>

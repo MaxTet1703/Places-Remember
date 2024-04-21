@@ -1,9 +1,12 @@
 <div class="form-container d-flex justify-content-center">
     <form id="create" class="d-flex flex-column " method="POST" action="{{url}}">
         {% csrf_token %}
-        {% for f in form%}
-            {{f}}
-        {% endfor %}
+        <input type="text" class="p-name" name="name", value="{{data.name}}" maxlength="60", placeholder="Введите текст", required id="id_name">
+        <textarea name="description" class="p-descr" placeholder="Расскажите об этом месте"  required id="id_description" cols="40" rows="10">
+            {{data.description}}
+        </textarea>
+        <input type="hidden", value="{{data.latitude}}" name="latitude", step="any", id="id_latitude">
+        <input type="hidden", value="{{data.longitude}}" name="longitude", step="any", id="id_longitude">
         <button class="align-self-center" type="submit">{{do}}</button>
     </form>
     <div id="map"></div>

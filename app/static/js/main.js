@@ -5,6 +5,10 @@ $(function($){
             zoom: 15,
             controls: []
         });
+        if($('input[name="latitude"]').val()){
+            map.geoObjects.add(new ymaps.Placemark([$('input[name="longitude"]').val(),
+                                                    $('input[name="latitude"]').val()]));
+        }
         map.events.add("click", (e) => {
             console.log(e.get("coords"))
             map.geoObjects.removeAll();
@@ -12,8 +16,11 @@ $(function($){
             $('input[name="latitude"]').val(e.get("coords")[1]);
             $('input[name="longitude"]').val(e.get("coords")[0]);
         })
-        render_maps();
+        if (Array.from($("div.map")).length !=0){
+            render_maps();
+        }
     });
+    // Отображение карт для каждого отзыва 
     function render_maps(){
         Array.from($("div.map")).forEach(element => {
             var map = new ymaps.Map($(element).attr("id"),{
@@ -24,6 +31,7 @@ $(function($){
             map.geoObjects.add(new ymaps.Placemark([$(element).attr("longitude"), $(element).attr("latitude")])) 
         });
     }
+    // Отправка данных для создания/изменения отзыва
     $("#create").submit(function(e){
         e.preventDefault();
         $.ajax({
@@ -32,11 +40,11 @@ $(function($){
             dataType: 'json',
             data: $(this).serialize(),
             success: function(response){
-                console.log("Готово")
+                alert(response.message);
+                window.location.pathname = 'main/'
             },
             error: function(xhr, status, error){
-                console.log("Вы потерпрели фиаско")
-                console.log(error);
+                alert("Заполните данные корректно и не забудьте отметить место на карте")
             }
         })
     });
